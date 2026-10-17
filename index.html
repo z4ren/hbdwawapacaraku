@@ -66,7 +66,7 @@ button.ghost{background:transparent;color:var(--ac);border:1px solid var(--ac)}
   <div class="tag">Menghitung hari</div>
   <h1>Your Special Day<br><em>is Coming</em></h1>
   <div class="cd"><div><b id="d">00</b><span>Hari</span></div><div><b id="h">00</b><span>Jam</span></div><div><b id="m">00</b><span>Menit</span></div><div><b id="s">00</b><span>Detik</span></div></div>
-  <button onclick="go(1)">Open Your Gift</button>
+  <button id="open" onclick="go(1)">Open Your Gift</button>
 </section>
 
 <section id="s1">
@@ -112,7 +112,7 @@ button.ghost{background:transparent;color:var(--ac);border:1px solid var(--ac)}
 <script>
 // ====== EDIT BAGIAN INI ======
 const NAME = "Sayangku Tercinta";
-const TARGET = "2026-10-18T00:00:00";            // tanggal ulang tahun (waktu lokal)
+const TARGET = "2026-10-18T00:00:00+07:00";      // tanggal ulang tahun (waktu lokal)            // tanggal ulang tahun (waktu lokal)
 const SONGS = [                                    // src = file mp3, cover = gambar sampul (boleh dikosongkan)
   {t:"Perahu Kertas", a:"Maudy Ayunda", src:"lagu/lagu1.mp3", cover:"foto/cover1.jpg"},
   {t:"Hanya Untukmu", a:"Ten2Five", src:"lagu/lagu2.mp3", cover:"foto/cover2.jpg"},
@@ -131,6 +131,7 @@ function go(n,reset){
 // countdown
 function tick(){
   let ms=Math.max(0,new Date(TARGET)-new Date()),p=v=>String(v).padStart(2,'0');
+  $('open').disabled=ms>0;$('open').style.opacity=ms>0?.4:1;$('open').textContent=ms>0?'Belum waktunya 🔒':'Open Her Gift';
   $('d').textContent=p(Math.floor(ms/864e5));$('h').textContent=p(Math.floor(ms/36e5)%24);
   $('m').textContent=p(Math.floor(ms/6e4)%60);$('s').textContent=p(Math.floor(ms/1e3)%60);
 }
