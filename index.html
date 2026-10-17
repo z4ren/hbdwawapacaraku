@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Her Special Day</title>
+<style>
+:root{--bg:#fff3f0;--card:#ffffff;--tx:#4a2336;--mut:#9a6b7c;--ac:#d6457a;--ac2:#f2a7c0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c0f1a;--card:#2b1727;--tx:#fbe6ee;--mut:#c79bb0;--ac:#ff6fa3;--ac2:#7a2f55}}
+:root[data-theme="dark"]{--bg:#1c0f1a;--card:#2b1727;--tx:#fbe6ee;--mut:#c79bb0;--ac:#ff6fa3;--ac2:#7a2f55}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Georgia,'Times New Roman',serif;min-height:100vh;text-align:center}
+section{display:none;min-height:100vh;padding:48px 20px;flex-direction:column;align-items:center;justify-content:center;gap:16px;animation:in .7s ease}
+section.on{display:flex}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.tag{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ac)}
+h1,h2{margin:0;font-weight:400}h1{font-size:clamp(32px,8vw,56px)}h2{font-size:clamp(26px,6vw,40px)}
+h1 em,h2 em{color:var(--ac)}
+p{max-width:460px;line-height:1.7;color:var(--mut);margin:0}
+button{font:inherit;cursor:pointer;border:0;border-radius:999px;padding:12px 26px;background:var(--ac);color:#fff;letter-spacing:.05em}
+button.ghost{background:transparent;color:var(--ac);border:1px solid var(--ac)}
+.cd{display:flex;gap:12px;align-items:center}
+.cd div{background:var(--card);border-radius:14px;padding:14px 12px;min-width:68px;box-shadow:0 4px 18px #0002}
+.cd b{display:block;font-size:30px}.cd span{font-size:11px;color:var(--mut)}
+.gift{font-size:64px;cursor:pointer;animation:bob 2s infinite;filter:grayscale(1);opacity:.5}
+@keyframes bob{50%{transform:translateY(-8px) rotate(4deg)}}
+.letter{background:var(--card);border-radius:16px;padding:28px 24px;max-width:480px;line-height:1.9;text-align:left;white-space:pre-line;box-shadow:0 6px 24px #0002}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;max-width:420px}
+.ph{aspect-ratio:1;border-radius:12px;background:linear-gradient(135deg,var(--ac2),var(--ac));display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;overflow:hidden;border:0;padding:0;color:#fff}
+.ph img{width:100%;height:100%;object-fit:cover}
+#lb{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;z-index:9;gap:12px}
+#lb.on{display:flex}#lb .big{width:min(80vw,420px);aspect-ratio:1;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,var(--ac2),var(--ac));display:flex;align-items:center;justify-content:center;font-size:60px}
+#lb .big img{width:100%;height:100%;object-fit:cover}
+#lb button{background:#fff3;padding:10px 16px}
+.note{font-size:13px}
+.tree{width:min(300px,80vw)}
+.tree .tr{stroke-dasharray:300;stroke-dashoffset:300;animation:g 3s forwards}
+.tree .lf{opacity:0;transform-origin:center;transform-box:fill-box;animation:p .8s forwards}
+@keyframes g{to{stroke-dashoffset:0}}@keyframes p{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+#hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+#hearts i{position:absolute;bottom:-20px;color:var(--ac);opacity:.7;animation:up linear forwards}
+@keyframes up{to{transform:translateY(-110vh);opacity:0}}
+.gift.ready{filter:none;opacity:1}
+#s1{background:radial-gradient(ellipse at 50% 25%,#3a2a24,#150f14 70%);color:#f3e3c7;--gold:#e3b877}
+#s1 .tag{color:#c9a46a}#s1 p{color:#b9a58c}
+#s1 h2{font-variant:small-caps;letter-spacing:.08em;color:#e8c58d;font-size:clamp(30px,7vw,52px)}
+.rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;width:100%;padding:24px calc(50% - min(130px,34vw));scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.card{flex:0 0 min(260px,68vw);scroll-snap-align:center;background:linear-gradient(160deg,#2b211f,#1a1317);border:1px solid #4a3a30;border-radius:28px;padding:16px;text-align:left;opacity:.55;transform:scale(.94);transition:.3s}
+.card.sel{opacity:1;transform:scale(1);border:2px solid var(--gold);box-shadow:0 0 28px #e3b87733}
+.cv{width:100%;aspect-ratio:1;border-radius:20px;background:linear-gradient(135deg,#5a3a4a,#2a1a22) center/cover;display:flex;align-items:center;justify-content:center;font-size:48px}
+.card h3{margin:14px 0 2px;font-size:16px;font-weight:400;font-variant:small-caps;letter-spacing:.08em}
+.card small{color:#a89580;font-family:system-ui,sans-serif;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:10px}
+.card input[type=range]{width:100%;accent-color:#e8d6b8;margin:0}
+.tm{display:flex;justify-content:space-between;font:12px system-ui,sans-serif;color:#a89580;margin-top:6px}
+.ctl{display:flex;justify-content:center;align-items:center;gap:28px;margin:8px 0}
+.ctl button{background:none;padding:6px;color:#f3e3c7;font-size:24px;line-height:1;letter-spacing:0}
+.ctl .pp{font-size:30px}
+.vol{display:flex;align-items:center;gap:8px;font-size:12px;color:#a89580}
+</style>
+</head>
+<body>
+<div id="hearts"></div>
+
+<section id="s0" class="on">
+  <div class="tag">Menghitung hari</div>
+  <h1>Your Special Day<br><em>is Coming</em></h1>
+  <div class="cd"><div><b id="d">00</b><span>Hari</span></div><div><b id="h">00</b><span>Jam</span></div><div><b id="m">00</b><span>Menit</span></div><div><b id="s">00</b><span>Detik</span></div></div>
+  <button onclick="go(1)">Open Your Gift</button>
+</section>
+
+<section id="s1">
+  <div class="tag">✦ Jukebox ✦</div>
+  <h2>Pilih Lagu Kita</h2>
+  <div class="rail" id="rail"></div>
+  <p class="note" id="hint">Pilih satu lagu dulu, lalu ketuk kadonya ✦</p>
+  <div class="gift" id="gift">🎁</div>
+</section>
+
+<section id="s2">
+  <div class="tag">A love letter for you</div>
+  <h2>Your <em>Special Day</em></h2>
+  <p>Created with love, just for you</p>
+  <button onclick="go(3)">✦ Read my letter ✦</button>
+</section>
+
+<section id="s3">
+  <div class="tag">✦ Our memories ✦</div>
+  <h2>Our Memories</h2>
+  <p>every moment captured in love</p>
+  <div class="grid" id="grid"></div>
+  <button onclick="go(5)">✦ Next · A letter for you ✦</button>
+</section>
+
+<section id="s5">
+  <div class="tag">✦ Pesan dari hatiku ✦</div>
+  <div class="letter" id="letter"></div>
+  <div><button class="ghost" onclick="go(3)">Kembali</button> <button onclick="go(6)">✦ One last surprise ✦</button></div>
+</section>
+
+<section id="s6">
+  <div class="tag">✦ Happy Birthday ✦</div>
+  <h2>Selamat Ulang Tahun<br><em id="nm"></em></h2>
+  <div class="tag">✦ See our love grow ✦</div>
+  <svg class="tree" viewBox="0 0 200 220" id="tree" aria-hidden="true"></svg>
+  <p>Semoga cinta, kebahagiaan, dan hubungan kita terus tumbuh dan mekar, sebagaimana pohon ini yang tak pernah berhenti berkembang...</p>
+  <button onclick="go(0,true)">Replay our story ↺</button>
+</section>
+
+<div id="lb"><button id="pv">‹</button><div class="big" id="big"></div><button id="nx">›</button><button id="cl" style="position:absolute;top:16px;right:16px">✕</button></div>
+
+<script>
+// ====== EDIT BAGIAN INI ======
+const NAME = "Sayangku Tercinta";
+const TARGET = "2026-10-18T00:00:00";            // tanggal ulang tahun (waktu lokal)
+const SONGS = [                                    // src = file mp3, cover = gambar sampul (boleh dikosongkan)
+  {t:"Perahu Kertas", a:"Maudy Ayunda", src:"lagu/lagu1.mp3", cover:"foto/cover1.jpg"},
+  {t:"Hanya Untukmu", a:"Ten2Five", src:"lagu/lagu2.mp3", cover:"foto/cover2.jpg"},
+  {t:"Kota Ini Tak Sama Tanpamu", a:"Nadhif Basalamah", src:"lagu/lagu3.mp3", cover:"foto/cover3.png"}
+];
+const PHOTOS = ["foto/foto1.jpeg","foto/foto2.jpeg","foto/foto3.jpeg","foto/foto4.jpeg","foto/foto5.jpeg","foto/mambunwaki.jpeg"];                                 // isi dengan link foto, contoh: ["foto1.jpg","foto2.jpg"]
+const MESSAGE = "Sayangku Hawa maura nabira ayu,\n\nTerima kasih sudah hadir dan membuat hari-hariku lebih indah. Meskipun kita banyak berantemnya, tapi aku bener-bener bersyukur karena kamu selalu mau untuk terus sama aku sampai sekarang. Di hari spesialmu ini, aku cuma ingin kamu tahu bahwa kamu sangat berarti buat aku, dan sampai sekarang aku tetep cinta mati sama kamu\n\nSemoga semua doa dan harapanmu terkabul. Dan semoga kita bisa cepet ketemu atau menikah.\n\nDengan kasih, sayang, dan cinta\nPacarmu - Dzaky";
+// ==============================
+
+const $=id=>document.getElementById(id);
+function go(n,reset){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('on'));
+  $('s'+n).classList.add('on');window.scrollTo(0,0);
+  if(n===6)grow(); if(n===1)setTimeout(mark,50); if(reset&&audio){audio.pause()}
+}
+// countdown
+function tick(){
+  let ms=Math.max(0,new Date(TARGET)-new Date()),p=v=>String(v).padStart(2,'0');
+  $('d').textContent=p(Math.floor(ms/864e5));$('h').textContent=p(Math.floor(ms/36e5)%24);
+  $('m').textContent=p(Math.floor(ms/6e4)%60);$('s').textContent=p(Math.floor(ms/1e3)%60);
+}
+tick();setInterval(tick,1000);
+// jukebox
+const rail=$('rail'),audio=new Audio();let picked=-1,vol=.8,tm;const cards=[];
+const fmt=t=>{t=Math.max(0,t|0);return(t/60|0)+':'+String(t%60).padStart(2,'0')};
+function mark(){const r=rail.getBoundingClientRect(),m=r.left+r.width/2;let b=0,d=1e9;
+  cards.forEach((c,i)=>{const q=c.getBoundingClientRect(),x=Math.abs(q.left+q.width/2-m);if(x<d){d=x;b=i}});
+  cards.forEach((c,i)=>c.classList.toggle('sel',i===b))}
+function center(i){cards[i].scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
+function upd(){cards.forEach((c,i)=>{c.querySelector('.pp').textContent=(i===picked&&!audio.paused)?'⏸':'▶'})}
+function play(i){
+  if(i===picked){audio.paused?audio.play().catch(()=>{}):audio.pause();upd();return}
+  picked=i;audio.src=SONGS[i].src;audio.volume=vol;audio.play().catch(()=>{});
+  center(i);$('gift').classList.add('ready');$('hint').textContent='Sekarang ketuk kadonya ✦';upd();
+}
+SONGS.forEach((s,i)=>{
+  const c=document.createElement('div');c.className='card';
+  c.innerHTML='<div class="cv"></div><h3></h3><small></small><input class="sk" type="range" min="0" max="100" value="0" aria-label="Posisi lagu"><div class="tm"><span class="cu">0:00</span><span class="rm">-0:00</span></div><div class="ctl"><button class="pv" aria-label="Sebelumnya">⏮</button><button class="pp" aria-label="Putar">▶</button><button class="nx" aria-label="Berikutnya">⏭</button></div><div class="vol">🔈<input class="vl" type="range" min="0" max="100" value="80" aria-label="Volume">🔊</div>';
+  const cv=c.querySelector('.cv');if(s.cover)cv.style.backgroundImage='url("'+s.cover+'")';else cv.textContent='♪';
+  c.querySelector('h3').textContent=s.t;c.querySelector('small').textContent=s.a;
+  c.onclick=()=>center(i);
+  c.querySelector('.pp').onclick=e=>{e.stopPropagation();play(i)};
+  c.querySelector('.pv').onclick=e=>{e.stopPropagation();play((i-1+SONGS.length)%SONGS.length)};
+  c.querySelector('.nx').onclick=e=>{e.stopPropagation();play((i+1)%SONGS.length)};
+  c.querySelector('.sk').oninput=e=>{if(i===picked&&audio.duration)audio.currentTime=e.target.value/100*audio.duration};
+  c.querySelector('.vl').oninput=e=>{vol=e.target.value/100;audio.volume=vol;cards.forEach(k=>k.querySelector('.vl').value=e.target.value)};
+  rail.appendChild(c);cards.push(c);
+});
+rail.addEventListener('scroll',()=>{clearTimeout(tm);tm=setTimeout(mark,60)});
+audio.ontimeupdate=()=>{const c=cards[picked];if(!c||!audio.duration)return;
+  c.querySelector('.sk').value=audio.currentTime/audio.duration*100;
+  c.querySelector('.cu').textContent=fmt(audio.currentTime);c.querySelector('.rm').textContent='-'+fmt(audio.duration-audio.currentTime)};
+audio.onended=()=>play((picked+1)%SONGS.length);
+audio.onplay=audio.onpause=upd;
+$('gift').onclick=()=>{if(picked>=0)go(2)};
+// letter text + gallery
+$('letter').textContent=MESSAGE;$('nm').textContent=NAME;
+const n=Math.max(PHOTOS.length,6);let cur=0;
+function show(i){cur=(i+n)%n;$('big').innerHTML=PHOTOS[cur]?'<img src="'+PHOTOS[cur]+'" alt="">':'♥'}
+for(let i=0;i<n;i++){
+  const b=document.createElement('button');b.className='ph';b.setAttribute('aria-label','Foto '+(i+1));
+  b.innerHTML=PHOTOS[i]?'<img src="'+PHOTOS[i]+'" alt="">':'♥';
+  b.onclick=()=>{show(i);$('lb').classList.add('on')};$('grid').appendChild(b);
+}
+$('pv').onclick=()=>show(cur-1);$('nx').onclick=()=>show(cur+1);$('cl').onclick=()=>$('lb').classList.remove('on');
+// tree
+function grow(){
+  const t=$('tree');t.innerHTML='<path class="tr" d="M100 210 C100 160 98 130 100 90 M100 150 C80 135 65 125 55 105 M100 130 C120 115 135 105 148 88" stroke="#8a5a44" stroke-width="7" fill="none" stroke-linecap="round"/>';
+  for(let i=0;i<46;i++){
+    const a=Math.random()*6.28,r=Math.sqrt(Math.random())*62,x=100+Math.cos(a)*r*1.1,y=80+Math.sin(a)*r*.85;
+    const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r',5+Math.random()*5);
+    c.setAttribute('fill',['#ff8fb5','#ffb3cc','#f2a7c0','#ff6fa3'][i%4]);c.setAttribute('class','lf');
+    c.style.animationDelay=(1.5+i*.06)+'s';t.appendChild(c);
+  }
+}
+// floating hearts
+setInterval(()=>{const h=document.createElement('i');h.textContent='♥';h.style.left=Math.random()*100+'vw';h.style.fontSize=(10+Math.random()*16)+'px';h.style.animationDuration=(6+Math.random()*5)+'s';$('hearts').appendChild(h);setTimeout(()=>h.remove(),11000)},900);
+</script>
+</body>
+</html>
